@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Toast } from './components/Toast';
+import { Alert } from './components/Alert';
 class App extends Component {
   render() {
     return (
-      <Toast/>   
+      <Alert/>   
     );
   }
 }

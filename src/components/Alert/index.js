@@ -1,2 +1,2 @@
-import {Alert} from './view/Alert';
+import {Alert} from './view/alert';
 export {Alert};

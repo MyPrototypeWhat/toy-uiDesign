@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import { Alert } from './components/Alert';
 class App extends Component {
   render() {
     return (
-      <Alert/>   
+      <Fragment>
+        <Alert closed={true} title='123' text='123112312312323123123'/>  
+      </Fragment>
     );
   }
 }

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Alert } from './components/Alert';
+import { ScrollBar } from './components/ScrollBar';
 class App extends Component {
   render() {
     return (
-      <Alert/>   
+      <ScrollBar style={{height:'400px'}}>
+        <div style={{height:'2000px'}}>
+          123123123123123123
+        </div>
+      </ScrollBar>
     );
   }
 }

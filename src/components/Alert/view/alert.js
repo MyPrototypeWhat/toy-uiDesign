@@ -2,8 +2,7 @@ import React,{Fragment} from 'react';
 import './style.less';
 export const Alert=(props)=>{
     const [flage,setFlage]=React.useState(true);
-    console.log(flage)
-    const time =props.transTime||300
+    const time =props.transTime||300;
     return(
         <Fragment>
             {
@@ -22,7 +21,7 @@ export const Alert=(props)=>{
                                                 document.querySelector('.Chaos-alert').className='Chaos-alert alert-exit';
                                                 setTimeout(()=>{
                                                     setFlage(false);
-                                                },time)
+                                                },time);
                                             }else{
                                                 setFlage(false);
                                             }
@@ -50,4 +49,4 @@ export const Alert=(props)=>{
             }
         </Fragment>
     );
-}
+};

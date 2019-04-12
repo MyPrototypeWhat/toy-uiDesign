@@ -1,0 +1,44 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "globals": {
+        "__IS_SERVER__": true,
+        "__IS_CLIENT__": true,
+        "WeixinJSBridge": true,
+        "Promise": true,
+        "System": true,
+        "wx": true
+    },
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "react/no-did-mount-set-state": 0,
+        "react/prop-types": 0,
+        "react/display-name": 0,
+        "react/no-find-dom-node": 0,
+        "max-lines": ["warn", {
+          "max": 450,
+          "skipComments": true,
+          "skipBlankLines": true
+        }],
+        "no-console": 0,
+        "no-unused-vars": 2,
+        "semi": 2,
+        "prettier/prettier": 0
+    },
+    "plugins": [
+        "prettier"
+    ]
+}

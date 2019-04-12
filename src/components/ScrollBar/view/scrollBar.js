@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './style.less';
 export class ScrollBar extends React.Component{
     state={
@@ -26,7 +26,7 @@ export class ScrollBar extends React.Component{
     }
     scrollOpt=(viewOpt,containerOpt)=>{
         var result=containerOpt*containerOpt/(viewOpt-containerOpt);
-        return result
+        return result;
     }
     scrollWidth=(scrollBar)=>{
         var scrollWidth=scrollBar.offsetWidth-scrollBar.clientWidth;
@@ -35,28 +35,28 @@ export class ScrollBar extends React.Component{
         });
     }
     onScroll=(scrollBar,container)=>{
-        scrollBar.onscroll=(x)=>{
+        scrollBar.onscroll=()=>{
             this.onScrollY(scrollBar,container);
             this.onScrollX(scrollBar,container);
-        }
+        };
     }
     onScrollX=(scrollBar,container)=>{
         const containerWidth=container.clientWidth;
-        const scrollBarWidth=scrollBar.children[0].clientWidth
+        const scrollBarWidth=scrollBar.children[0].clientWidth;
         var scrollYWidth=containerWidth*containerWidth/(scrollBarWidth-containerWidth);
         let translateX=(containerWidth-scrollYWidth)/(scrollBarWidth-containerWidth)*scrollBar.scrollLeft;
         this.setState({
             translateX
-        })
+        });
     }
     onScrollY=(scrollBar,container)=>{
         const containerHeight=container.clientHeight;
-        const scrollBarHeight=scrollBar.children[0].clientHeight
+        const scrollBarHeight=scrollBar.children[0].clientHeight;
         var scrollYHeight=containerHeight*containerHeight/(scrollBar.children[0].clientHeight-containerHeight);
         let translateY=(containerHeight-scrollYHeight)/(scrollBarHeight-containerHeight)*scrollBar.scrollTop;
         this.setState({
             translateY
-        })
+        });
     }
     componentDidMount(){
         const container=document.querySelector('.Chaos-scrollBar');
@@ -94,6 +94,6 @@ export class ScrollBar extends React.Component{
                         ):null
                     }
            </div>
-       )
+       );
    }
 }

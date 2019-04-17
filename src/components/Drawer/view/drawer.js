@@ -31,7 +31,20 @@ export class Drawer extends  React.Component{
                 <div 
                     className='Chaos-drawer-wrapper' 
                     style={{
-                        transform:`${this.props.visible?'':'translateY(100%)'}`,
+                        transform:`${
+                            this.props.visible
+                            ?''
+                            :(
+                                direction==='bottom'||direction==='right'
+                                ?'translateY(100%)'
+                                :'translateY(-100%)'
+                            )
+                        }`,
+                        // transform:`${
+                        //     this.props.visible&&(direction==='left'||direction==='top')
+                        //     ?''
+                        //     :'translateY(-100%)'
+                        // }`,
                         height:`${direction==='bottom'||direction==='top'?this.props.height+'px':''}`
                     }}
                     onClick={(e)=>{e.stopPropagation();}}

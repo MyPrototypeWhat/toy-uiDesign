@@ -22,7 +22,7 @@ class App extends Component {
         </button>
         <Drawer 
         visible={this.state.isShow} 
-        direction='bottom'
+        direction='top'
         onClose={this.onClose}
         title='123123123123'
         maskClosable={true}

@@ -27,7 +27,8 @@ class App extends Component {
         title='123123123123'
         maskClosable={true}
         height='230'
-        mask={false}
+        mask={true}
+        zIndex='999'
         >
           <p>123123</p>
           <p>123123</p>

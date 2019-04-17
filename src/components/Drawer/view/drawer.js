@@ -11,6 +11,7 @@ export class Drawer extends  React.Component{
                     `Chaos-drawer-${direction}`
                     )}
                     onClick={()=>{!this.props.mask&&this.props.onClose();}}
+                    style={{zIndex:this.props.zIndex}}
                     >
                {
                    this.props.mask

@@ -2,8 +2,23 @@ import React from 'react';
 import "./style.less";
 import classnames from 'classnames';
 export class Drawer extends  React.Component{
+    /*eslint-disable*/
+    direc=()=>{
+        const {direction}=this.props;
+        // dir+='';
+        let obj={
+            left:'translateX(-100%)',
+            top:'translateY(-100%)',
+            bottom:'translateY(100%)',
+            right:'translateX(100%)'
+        };
+        // console.log(obj[direction]);
+        return obj[direction];
+    }
     render(){
         const {visible,direction}=this.props;
+        // const trans=this.direc(direction);
+        // console.log(trans);
         return (
                 <div className={classnames(
                     'Chaos-drawer',
@@ -32,20 +47,14 @@ export class Drawer extends  React.Component{
                     className='Chaos-drawer-wrapper' 
                     style={{
                         transform:`${
-                            this.props.visible
+                           visible
                             ?''
                             :(
-                                direction==='bottom'||direction==='right'
-                                ?'translateY(100%)'
-                                :'translateY(-100%)'
+                                this.direc()
                             )
                         }`,
-                        // transform:`${
-                        //     this.props.visible&&(direction==='left'||direction==='top')
-                        //     ?''
-                        //     :'translateY(-100%)'
-                        // }`,
-                        height:`${direction==='bottom'||direction==='top'?this.props.height+'px':''}`
+                        height:`${direction==='bottom'||direction==='top'?this.props.height+'px':''}`,
+                        width:`${direction==='left'||direction==='right'?this.props.width+'px':''}`
                     }}
                     onClick={(e)=>{e.stopPropagation();}}
                 >

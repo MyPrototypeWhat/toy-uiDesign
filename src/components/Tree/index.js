@@ -1,2 +1,2 @@
-import {Tree} from './view/tree'
-export {Tree}
+import {Tree} from './view/tree';
+export {Tree};

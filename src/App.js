@@ -21,7 +21,7 @@ class App extends Component {
             children: [
               {
                 id: '1-3',
-                label: 'node1-1-1'
+                label: 'node2'
               }
             ]
           }

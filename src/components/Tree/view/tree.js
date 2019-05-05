@@ -6,11 +6,14 @@ export class Tree extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            initdata: props.data,
             data: props.data,
             inputText: ''
         };
     }
+    
     filterInput(filterText) {
+        // 输入框过滤
         let inputNode = (
             <input className='input-filter' onChange={this.inputFilterText.bind(this)} placeholder='请输入关键字过滤' value={filterText}/>
         );
@@ -49,7 +52,14 @@ export class Tree extends React.Component {
         // jsx不允许if else判断
         if (type == '[object Object]') {
             console.log(data);
-            treenode = (<span className='treenode tree-root-node'>{data.children ? righticon(data) : null}<span className='root-label'>{data.label}</span></span>);
+            treenode = (<div>
+            <span className='treenode tree-root-node'>{data.children ? righticon(data) : null}<span className='root-label'>{data.label}</span></span>
+            
+                {this.createTree(data.children)}
+            </div>
+            
+            );
+
         } else if(Array.isArray(data)){
             
             treenode = (
@@ -93,10 +103,9 @@ export class Tree extends React.Component {
             if(obj.id == node.id) {
                 obj[types] = newvalue;
                 if(types == 'isChecked') {
+                    // node以下全选
                     obj = this.checkedAll(obj, newvalue);
                 }
-                // obj.isChecked = node.isChecked
-                // obj = node;
             }
             if(obj.hasOwnProperty('children') && obj.children.length > 0) {
                     this.psobject(obj.children, node, types,  newvalue);
@@ -109,8 +118,6 @@ export class Tree extends React.Component {
                     if(types == 'isChecked' && newvalue) {
                         this.psobject(obj[key], node, types,  true);
                     }
-                    // obj[key].isChecked
-                    // obj = node;
                 }
                 if(obj[key].hasOwnProperty('children') && obj[key].children.length > 0) {
                         this.psobject(obj[key], node, types,  newvalue);
@@ -122,14 +129,9 @@ export class Tree extends React.Component {
     }
     clickNode = (node) => {
         // click node 当前节点数据
-        console.log(node);
         node.expand = !node.expand;
         
         let newdata = this.psobject(this.state.data, node, 'expand', node.expand);
-        // this.setState({
-        //     data:
-        // })
-        console.log(newdata);
         this.setState({
             data: newdata
         }); // 从而取消以下的dom操作代码
@@ -165,23 +167,77 @@ export class Tree extends React.Component {
             data: newdata
         });
     }
-    inputFilterText(val) {
+     deal(nodes, predicate) {
+        // 如果已经没有节点了，结束递归
+        if (!(nodes && nodes.length)) {
+            return [];
+        }
+    
+        const newChildren = [];
+        for (const node of nodes) {
+            if (predicate(node)) {
+                // 如果节点符合条件，直接加入新的节点集
+                newChildren.push(node);
+                node.children = this.deal(node.children, predicate);
+            } else {
+                // 如果当前节点不符合条件，递归过滤子节点，
+                // 把符合条件的子节点提升上来，并入新节点集
+                newChildren.push(...this.deal(node.children, predicate));
+            }
+        }
+        return newChildren;
+    }
+    
+    psvalue(data, value) {
+        if(!value) return data;
+        let filterdata = [];
+        let type = Object.prototype.toString.call(data);
+        if(type === '[object Object]') {
+            if(data.label.indexOf(value) != -1) {
+                filterdata.push(data);
+                data.children = this.psvalue(data.children, value);
+    
+            } else {
+                if(data.children) 
+                    this.psvalue(data.children, value);
+            }
+        } else {
+            for(let key in data) {
+            
+                if(data[key].label.indexOf(value) != -1) {
+                    filterdata.push(data[key]);
+                    data[key].children = this.psvalue(data[key].children, value);
+                    
+                } else {
+                    if(data[key].children)
+                       filterdata =  this.psvalue(data[key], value);
+                }
+                
+            }
+        }
+        return filterdata;
+    }
+    inputFilterText(e) {
         // 输入文字
+        
+        let _data = this.state.initdata;
+       
+        let newvalue = this.deal(_data, node => node.label.indexOf(e.target.value) !== -1);
         this.setState({
-            inputText: val.value
+            inputText: e.target.value,
+            data: newvalue
         });
+        
     }
     UNSAFE_componentWillMount() {
       
     }
     render() {
-        
-        
         let treenode = this.createTree(this.state.data);
         let inputnode = this.filterInput(this.state.inputText);
-        console.log(this.state.data);
         return (
             <Fragment>
+                
                 <div className='input'>
                     {inputnode}
                 </div>

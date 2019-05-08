@@ -6,7 +6,6 @@ import { withKnobs, boolean} from '@storybook/addon-knobs';
 storiesOf('Drawer', module)
   .addDecorator(withKnobs)
   .add('Drawer', () => (
-    
         <Drawer 
         visible={boolean('显示', true)} 
         direction='top'

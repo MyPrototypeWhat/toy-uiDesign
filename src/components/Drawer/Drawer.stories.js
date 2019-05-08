@@ -1,14 +1,14 @@
 import React  from 'react';
 import { storiesOf } from '@storybook/react';
 import {Drawer} from './view/drawer';
-import { withKnobs, boolean} from '@storybook/addon-knobs';
-// const direction = text('direction','left');
+import { withKnobs, boolean,} from '@storybook/addon-knobs';
+
 storiesOf('Drawer', module)
   .addDecorator(withKnobs)
   .add('Drawer', () => (
         <Drawer 
         visible={boolean('显示', true)} 
-        direction='top'
+        direction='left'
         onClose={()=>{}}
         title='123123123123'
         maskClosable={true}

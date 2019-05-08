@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import { Tree } from './components/Tree';
-import imgUrl from './images/company.png';
+// import imgUrl from './images/company.png';
 // 引入图片 import 或者require
 import './style/index.less';
 
@@ -13,7 +13,7 @@ class App extends Component {
         label: 'node1',
         expand: true,
         isChecked: false,
-        icon: imgUrl,
+        icon: '',
         children: [
           {
             id: '1-1',

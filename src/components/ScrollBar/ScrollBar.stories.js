@@ -6,7 +6,6 @@ import { ScrollBar } from './view/scrollBar';
 //   scrollY:true,
 //   scrollX:true
 // });const label = 'Colors';
-
 storiesOf('ScrollBar', module)
   // .addDecorator(StateDecorator(data))
   .add('ScrollBar', () => (
